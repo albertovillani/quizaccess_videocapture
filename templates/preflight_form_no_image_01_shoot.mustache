@@ -1,0 +1,54 @@
+<div id="container01" class="container shoot">
+	<div class="sectiontitle">{{#str}} noimage01title, quizaccess_videocapture {{/str}}</div>
+	<div id="videocapcontainer">
+		<video id="video"></video><br>
+		<button name="takepicture" class="tkpctr actionbtn"  style="display:none">{{#str}} takepicture, quizaccess_videocapture {{/str}}</button>
+	</div>
+	<div id="capturedpicture">
+		<div class="icon_container"  style="display:none">
+			<div id="capturedmessage">{{#str}} recogloadercheck, quizaccess_videocapture {{/str}}</div>
+			<div id="capturederror" style="display:none">
+				<i class="fa fa-exclamation-triangle" aria-hidden="true"></i><br>
+				<div id="errormsg-BIO-err-000" class="errmsg">{{#str}} bioerr000, quizaccess_videocapture {{/str}}</div>
+				<div id="errormsg-BIO-err-001" class="errmsg">{{#str}} bioerr001, quizaccess_videocapture {{/str}}</div>
+				<div id="errormsg-BIO-err-002" class="errmsg">{{#str}} bioerr002, quizaccess_videocapture {{/str}}</div>
+				<div id="errormsg-BIO-err-003" class="errmsg">{{#str}} bioerr003, quizaccess_videocapture {{/str}}</div>
+				<div id="errormsg-BIO-API-ERR" class="errmsg">{{#str}} rek_api_error, quizaccess_videocapture {{/str}}</div>
+			</div>
+		</div>
+		<div class="shot_container" style="display:none">
+			<div class="photoframe">
+				<img id="photo" class="captured_pic_modal" src="" style="display:none">
+				<img id="photo_target" class="captured_pic_modal userpicture defaultuserpic" src="{{user_picurl}}">
+				<span class="pic_label"><em>{{#str}} captured_pic, quizaccess_videocapture {{/str}}</em></span>
+			</div>
+			<button name="saveandlogin" class="actionbtn" style="display:none">{{#str}} saveandlogin, quizaccess_videocapture {{/str}}</button>
+		</div>
+	</div>
+	<div style="clear:both; height:0">&nbsp;</div>
+	
+	<div id="actionbtnsbar">
+		<button name="backbtn" class="actionbtn bckbtn" >{{#str}} back {{/str}}</button>
+		<!--<div class="btncontainer"><button name="takepicture" class="tkpctr actionbtn"  style="display:none">{{#str}} takepicture, quizaccess_videocapture {{/str}}</button></div>-->
+		<!--<div class="btncontainer"><button name="saveandlogin" class="actionbtn" style="display:none">{{#str}} saveandlogin, quizaccess_videocapture {{/str}}</button></div>-->
+	</div>
+	<div id="slhelp" class="helpstr" style="display:none">{{#str}} saveandloginshoothelp, quizaccess_videocapture {{/str}}</div>
+	<div id="videocheck" style="display:none">
+		<div id="recogloader">{{#str}} recogloader, quizaccess_videocapture {{/str}}</div>
+		<div id="recogfailed" style="display:none">
+			<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+			<div  id="svl-bio-err" class="helpstr">{{#str}} loginfailed, quizaccess_videocapture {{/str}}</div><br>
+			<div id="svl-api-error" style="display:none" class="helpstr">{{#str}} rek_api_error, quizaccess_videocapture {{/str}}</div><br>
+		</div>
+		<div id="recogsuccess" style="display:none">
+			<i class="fa fa-check" aria-hidden="true"></i><br>
+			<div class="helpstr">{{#str}} continuetoquiz, quizaccess_videocapture {{/str}}</div><br>
+		</div>
+	</div>
+
+	<canvas id="canvas" style="display:none" width="210px" height="157px"></canvas>
+	{{#js}}
+		require(['quizaccess_videocapture/face_recognition_no_image_01_shoot'],  (noimage01shoot) => noimage01shoot.init({{userid}}));
+	{{/js}}
+</div>
+<div style="clear:both"></div>

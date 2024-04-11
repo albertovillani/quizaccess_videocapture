@@ -1,0 +1,23 @@
+
+	<div class="helpstr">{{#str}} takepicturehelp, auth_facelogin {{/str}}</div>
+	<div id="videocapcontainer">
+		<div id="captitle"><em>{{#str}} videocapturebox, auth_facelogin {{/str}}</em></div>
+		<video id="video"></video><br>
+		<button name="takepicture">{{#str}} takepicture, auth_facelogin {{/str}}</button>
+	</div>
+	<div id="capturedpicture" style="display:none">
+		<div class="icon_container">
+			<div id="capturedmessage">{{#str}} recogloadercheck, auth_facelogin {{/str}}</div>
+			<div id="capturederror" style="display:none">
+				<i class="fa fa-exclamation-triangle" aria-hidden="true"></i><br>
+				<div id="errormsg-BIO-err-000" class="errmsg">{{#str}} bioerr000, auth_facelogin {{/str}}</div>
+				<div id="errormsg-BIO-err-001" class="errmsg">{{#str}} bioerr001, auth_facelogin {{/str}}</div>
+				<div id="errormsg-BIO-err-002" class="errmsg">{{#str}} bioerr002, auth_facelogin {{/str}}</div>
+				<div id="errormsg-BIO-err-003" class="errmsg">{{#str}} bioerr003, auth_facelogin {{/str}}</div>
+			</div>
+		</div>
+	</div>
+
+	<canvas id="canvas" style="display:none" width="210px" height="157px"></canvas>
+
+<div style="clear:both"></div>

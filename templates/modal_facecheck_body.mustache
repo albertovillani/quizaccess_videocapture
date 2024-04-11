@@ -1,0 +1,16 @@
+<div class="container">
+<p>{{#str}} rek_modal_message_attempt, quizaccess_videocapture {{/str}}</p>
+
+{{#lock}}
+<p class="msg-locked">{{#str}} rek_modal_message_locked, quizaccess_videocapture {{/str}}</p>
+{{/lock}}
+
+<div class="pic_container">
+<span class="pic_label">{{#str}} rek_modal_user_pic, quizaccess_videocapture {{/str}}</span>
+<img id="user_pic" class="user_pic_modal" src="/pluginfile.php/{{user_context}}/user/icon/boost/f1?{{nocachecode}}"/>
+</div>
+<div class="pic_container">
+<span class="pic_label">{{#str}} rek_modal_captured_pic, quizaccess_videocapture {{/str}}</span>
+<img id="captured_pic" class="captured_pic_modal" src="{{captured_pic}}">
+</div>
+</div>
