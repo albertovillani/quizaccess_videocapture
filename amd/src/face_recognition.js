@@ -1,6 +1,5 @@
-define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates',
-'core/ajax', 'quizaccess_videocapture/face_recognition_client'],
- function($, ModalFactory, ModalEvents, Templates, ajax, RC) {
+define(['jquery', 'quizaccess_videocapture/face_recognition_client'],
+ function($, RC) {
 
     return{
         init: function(){
