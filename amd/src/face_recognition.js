@@ -1,8 +1,17 @@
 define(['jquery', 'quizaccess_videocapture/face_recognition_client'],
- function($, RC) {
+ function($, recClient) {
 
     return{
         init: function(){
+
+            $('input[name="cancel"]').on('click', () => {
+                $('#recogfailed').hide();
+                $('#recogsuccess').hide();
+                $('#recogloader').hide();
+                $('.videocappreflight').hide();
+                $('input[name="submitbutton"]').attr('disabled', 'disabled');
+                recClient.releaseStream();
+            });
 
             $('button[name="startvideocap"]').on('click', function(){
                 $('#recogfailed').hide();
@@ -12,30 +21,12 @@ define(['jquery', 'quizaccess_videocapture/face_recognition_client'],
                 $('#recogsuccess').hide();
                 $('#recogloader').hide();
                 $('.videocappreflight').show();
-                if(RC.stream === null){
-                    RC.startVideoCap('video', 'canvas', 'photo');
+                if(recClient.stream === null){
+                    recClient.startVideoCap('video', 'canvas', 'photo');
                 }else{
                     $('#recogloader').show();
-                    RC.takepicture();
+                    recClient.takepicture();
                 }
-            });
-
-
-            $('input[name="cancel"]').on('click', () => {
-                $('#recogfailed').hide();
-                $('#recogsuccess').hide();
-                $('#recogloader').hide();
-                $('.videocappreflight').hide();
-                $('input[name="submitbutton"]').attr('disabled', 'disabled');
-                RC.releaseStream();
-            });
-
-            document.addEventListener('snapshotCheckSuccess', () =>{
-                $('input[name="facematched"]').attr('value', '1');
-                $('input[name="submitbutton"]').removeAttr('disabled');
-                $('#recogfailed').hide();
-                $('#recogloader').hide();
-                $('#recogsuccess').show();
             });
 
             document.addEventListener('snapshotCheckFailed', (e) =>{
@@ -49,6 +40,14 @@ define(['jquery', 'quizaccess_videocapture/face_recognition_client'],
                     $('#failedmessage').hide();
                     $('#failedmessage_api').show();
                 }
+            });
+
+            document.addEventListener('snapshotCheckSuccess', () =>{
+                $('input[name="facematched"]').attr('value', '1');
+                $('input[name="submitbutton"]').removeAttr('disabled');
+                $('#recogfailed').hide();
+                $('#recogloader').hide();
+                $('#recogsuccess').show();
             });
 
             document.getElementById('video').addEventListener('canplay', () => {
