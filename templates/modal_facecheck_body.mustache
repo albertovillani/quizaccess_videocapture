@@ -1,3 +1,32 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template quizaccess_videocapture/modal_facecheck_body
+
+    Face check modal body.
+
+    Example context (json):
+    {
+        "lock": "true/false",
+		"moodleurl": "Moodle wwwroot",
+		"user_context": "User context",
+		"nocachecode": "Random code to prevent image cache"
+    }
+}}
 <div class="container">
 <p>{{#str}} rek_modal_message_attempt, quizaccess_videocapture {{/str}}</p>
 
@@ -7,7 +36,7 @@
 
 <div class="pic_container">
 <span class="pic_label">{{#str}} rek_modal_user_pic, quizaccess_videocapture {{/str}}</span>
-<img id="user_pic" class="user_pic_modal" src="/pluginfile.php/{{user_context}}/user/icon/boost/f1?{{nocachecode}}"/>
+<img id="user_pic" class="user_pic_modal" src="{{moodleurl}}pluginfile.php/{{user_context}}/user/icon/boost/f1?{{nocachecode}}"/>
 </div>
 <div class="pic_container">
 <span class="pic_label">{{#str}} rek_modal_captured_pic, quizaccess_videocapture {{/str}}</span>

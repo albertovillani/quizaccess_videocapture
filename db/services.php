@@ -32,45 +32,44 @@ $functions = [
         'description'   => 'Check the snapshot of the user against his profile picture.',
         'type'          => 'read',
         'ajax'          => true,
-		'loginrequired' => false
+        'loginrequired' => false,
     ],
-	'quizaccess_videocapture_check_profile_picture' => [
+    'quizaccess_videocapture_check_profile_picture' => [
         'classname'     => 'quizaccess_videocapture\external\videocapture_external',
         'methodname'    => 'check_profile_picture',
         'description'   => 'Check the ID document image shot by the user and crop the face image.',
         'type'          => 'write',
         'ajax'          => true,
-		'loginrequired' => false
+        'loginrequired' => false,
     ],
-	'quizaccess_videocapture_check_uploaded_profile_picture' => [
+    'quizaccess_videocapture_check_uploaded_profile_picture' => [
         'classname'     => 'quizaccess_videocapture\external\videocapture_external',
         'methodname'    => 'check_uploaded_profile_picture',
         'description'   => 'Check the ID document image uploaded by the user and crop the face image.',
         'type'          => 'write',
         'ajax'          => true,
-		'loginrequired' => false
-    ],	
-	'quizaccess_videocapture_save_profile_picture' => [
+        'loginrequired' => false,
+    ],
+    'quizaccess_videocapture_save_profile_picture' => [
         'classname'     => 'quizaccess_videocapture\external\videocapture_external',
         'methodname'    => 'save_profile_picture',
         'description'   => 'Save the new profile picture for the user.',
         'type'          => 'write',
         'ajax'          => true,
-		'loginrequired' => false
-    ],	
+        'loginrequired' => false,
+    ],
 ];
 
-$services = array(
-      'quizrulevideocaptureservice' => array(                                                // the name of the web service
-          'functions' => array ('quizaccess_videocapture_check_snapshot', 
-								'quizaccess_videocapture_check_profile_picture', 
-								'quizaccess_videocapture_save_profile_picture',
-								'quizaccess_videocapture_check_uploaded_profile_picture'), // web service functions of this service
-          'restrictedusers' => 0,                                             // if enabled, the Moodle administrator must link some user to this service
-                                                                             // into the administration
-          'enabled' => 1,                                                       // if enabled, the service can be reachable on a default installation
-          'shortname' =>  'quizrulevideocaptureservice',       // optional – but needed if restrictedusers is set so as to allow logins.
-          'downloadfiles' => 0,    // allow file downloads.
-          'uploadfiles'  => 0      // allow file uploads.
-       )
-  );
+$services = [
+      'quizrulevideocaptureservice' => [
+          'functions' => ['quizaccess_videocapture_check_snapshot',
+                                'quizaccess_videocapture_check_profile_picture',
+                                'quizaccess_videocapture_save_profile_picture',
+                                'quizaccess_videocapture_check_uploaded_profile_picture'],
+          'restrictedusers' => 0,
+          'enabled' => 1,
+          'shortname' => 'quizrulevideocaptureservice',
+          'downloadfiles' => 0,
+          'uploadfiles'  => 0,
+       ],
+  ];

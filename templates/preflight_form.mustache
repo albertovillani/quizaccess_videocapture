@@ -1,31 +1,58 @@
-<div class="videocappreflight" style="display:none">
-	<video id="video"></video>
-	<div id="recogfailed" style="display:none" class="accessonly">
-	
-	<div class="pic_container">
-	<img alt="User profile picture" id="user_pic" class="user_pic_modal" src="/pluginfile.php/{{user_context}}/user/icon/boost/f1?{{getparam}}"/>
-	<span class="pic_label">{{#str}} rek_modal_user_pic, quizaccess_videocapture {{/str}}</span>
-	</div>
-	<div class="pic_container">
-	<img alt="Captured picture" id="photo" class="captured_pic_modal" src="">
-	<span class="pic_label">{{#str}} rek_modal_captured_pic, quizaccess_videocapture {{/str}}</span>
-	</div>
-	
-	<div class="icon_container">
-	<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-	<div id="failedmessage">{{#str}} rek_modal_message, quizaccess_videocapture {{/str}}</div>
-	<div id="failedmessage_api" style="display:none">{{#str}} rek_api_error, quizaccess_videocapture {{/str}}</div>
-	</div>
-	</div>
+{{!
+    This file is part of Moodle - http://moodle.org/
 
-	<div id="recogsuccess" style="display:none" class="accessonly">
-	<i class="fa fa-check" aria-hidden="true"></i>
-	<div class="helpstr">{{#str}} rek_modal_message_success, quizaccess_videocapture {{/str}}</div>
-	</div>
-	<div id="recogloader">
-	{{#str}} recogloaderaccessonly, quizaccess_videocapture {{/str}}
-	</div>
-	<canvas id="canvas" style="display:none" width="210px" height="157px"></canvas>
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template quizaccess_videocapture/preflight_form
+
+    Preflight form.
+
+    Example context (json):
+    {
+        "user_context": "User context id",
+		"getparam": "Get params for the user picture url",
+		"moodle_url": "Moodle wwwroot"
+    }
+}}
+<div class="videocappreflight" style="display:none">
+    <video id="video"></video>
+    <div id="recogfailed" style="display:none" class="accessonly">
+    
+    <div class="pic_container">
+    <img alt="User profile picture" id="user_pic" class="user_pic_modal" src="{{moodle_url}}pluginfile.php/{{user_context}}/user/icon/boost/f1?{{getparam}}"/>
+    <span class="pic_label">{{#str}} rek_modal_user_pic, quizaccess_videocapture {{/str}}</span>
+    </div>
+    <div class="pic_container">
+    <img alt="Captured picture" id="photo" class="captured_pic_modal" src="">
+    <span class="pic_label">{{#str}} rek_modal_captured_pic, quizaccess_videocapture {{/str}}</span>
+    </div>
+    
+    <div class="icon_container">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <div id="failedmessage">{{#str}} rek_modal_message, quizaccess_videocapture {{/str}}</div>
+    <div id="failedmessage_api" style="display:none">{{#str}} rek_api_error, quizaccess_videocapture {{/str}}</div>
+    </div>
+    </div>
+
+    <div id="recogsuccess" style="display:none" class="accessonly">
+    <i class="fa fa-check" aria-hidden="true"></i>
+    <div class="helpstr">{{#str}} rek_modal_message_success, quizaccess_videocapture {{/str}}</div>
+    </div>
+    <div id="recogloader">
+    {{#str}} recogloaderaccessonly, quizaccess_videocapture {{/str}}
+    </div>
+    <canvas id="canvas" style="display:none" width="210px" height="157px"></canvas>
 </div>
-<div class="abacobrand">Powered by</div>
 <div style="clear:both"></div>

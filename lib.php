@@ -19,15 +19,15 @@
  *
  * @package    quizaccess_videocapture
  * @copyright  2023 Abaco Technology
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or late
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Renders the profile picture upload form
+ *
+ * @return string HTML to output.
+ */
 function quizaccess_videocapture_output_fragment_uploadform() {
-	global $CFG;
-
-	$mform = new \quizaccess_videocapture\form\upload_picture_form();
-	return $mform->render();
+    $mform = new \quizaccess_videocapture\form\upload_picture_form();
+    return $mform->render();
 }

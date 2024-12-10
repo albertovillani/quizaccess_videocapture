@@ -15,19 +15,11 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template quizaccess_videocapture/modal_facecheck_body_api_error
+    @template quizaccess_videocapture/modal_facecheck_body
 
-    Face check modal body with api error.
+    Face check modal body.
 
     Example context (json):
-    {
-        "lock": "true/false",
-    }
+    {}
 }}
-<div class="container">
-<p>{{#str}} rek_api_error, quizaccess_videocapture {{/str}}</p>
-
-{{#lock}}
-<p class="msg-locked">{{#str}} rek_modal_message_locked, quizaccess_videocapture {{/str}}</p>
-{{/lock}}
-</div>
+<p>{{#str}} abacoprivacy, quizaccess_videocapture {{/str}}</p>

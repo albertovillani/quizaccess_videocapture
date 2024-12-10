@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -19,39 +18,56 @@
  * quizaccess_videocapture upload picture form
  *
  * @package     quizaccess_videocapture
- * @copyright  	2023 onwards Abaco Technology  {@link https://www.abacotechnology.com}
- * @license    	http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright   2023 onwards Abaco Technology  {@link https://www.abacotechnology.com}
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace quizaccess_videocapture\form;
 
+defined('MOODLE_INTERNAL') || die();
+
 require_once("$CFG->libdir/formslib.php");
 
+/**
+ * quizaccess_videocapture upload picture form
+ *
+ * @package     quizaccess_videocapture
+ * @copyright   2023 onwards Abaco Technology  {@link https://www.abacotechnology.com}
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class upload_picture_form extends \moodleform {
 
 
-    //Add elements to form
+    /**
+     *
+     * Add elements to form.
+     *
+     */
     public function definition() {
-        global $CFG;
-
         $mform = $this->_form;
-		$mform->addElement(
-			'filepicker',
-			'newpicture',
-			get_string('file'),
-			null,
-			[
-				'maxbytes' => 2000000,
-				'accepted_types' => ['.png', '.jpg'],
-			]
-		);
-		
-		//$this->add_action_buttons(true, get_string('save'));
-    }
-    //Custom validation should be added here
-    function validation($data, $files) {
+        $mform->addElement(
+            'filepicker',
+            'newpicture',
+            get_string('file'),
+            null,
+            [
+                'maxbytes' => 2000000,
+                'accepted_types' => ['.png', '.jpg'],
+            ]
+        );
 
-        return array();
+    }
+
+    /**
+     *
+     * Validation.
+     *
+     * @param array $data array of ("fieldname"=>value) of submitted data
+     * @param array $files array of uploaded files "element_name"=>tmp_file_path
+     * @return array
+     */
+    public function validation($data, $files) {
+        return [];
     }
 
 

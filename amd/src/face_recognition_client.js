@@ -1,14 +1,34 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Base functions for the face recognition process.
+ *
+ * @module     quizaccess_videocapture/face_recognition_client
+ * @author     Alberto Villani <alberto.villani@abacotechnology.it>
+ * @copyright  2022 Abaco Technology
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', 'core/ajax'],
  function($, ModalFactory, ModalEvents, Templates, ajax) {
 
-
-    //var streaming = false;
-    //var localstream = null;
-
     var RecognitionClient = function() {
 
-        this.width = 210;    // We will scale the photo width to this
-        this.height = 0;     // This will be computed based on the input stream
+        this.width = 210;
+        this.height = 0;
         this.streaming = false;
 
         this.video = null;
@@ -18,7 +38,7 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
 
         this.stream = null;
 
-        this.flow = 'check'; // Default
+        this.flow = 'check';
         this.step = 0;
         this.uid = null;
 
@@ -186,7 +206,7 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
         var promises = ajax.call([
             { methodname: 'quizaccess_videocapture_check_profile_picture',
               args: { file: this.photoTarget.getAttribute('src'), uid: this.uid} }
-        ], true, false);
+        ]);
 
         promises[0].done(function(j) {
             if(j.success){
@@ -210,7 +230,7 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
         var promises = ajax.call([
             { methodname: 'quizaccess_videocapture_check_uploaded_profile_picture',
             args: { jsonformdata: JSON.stringify(formData), uid: this.uid} }
-        ], true, false);
+        ]);
 
         promises[0].done(function(j) {
             $('#upldretry').show();
@@ -229,7 +249,6 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
 
     };
 
-
     RecognitionClient.prototype.saveandlogin = function(){
 
         this.takepicture();
@@ -237,7 +256,7 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
         var promises = ajax.call([
             { methodname: 'quizaccess_videocapture_check_snapshot',
              args: { file: this.photo.getAttribute('src'), target: this.photoTarget.getAttribute('src')}
-            }], true, false);
+            }]);
 
         promises[0].done(function(j) {
             if(j.match > 0){
@@ -245,7 +264,7 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
                 promises = ajax.call([
                     { methodname: 'quizaccess_videocapture_save_profile_picture',
                       args: { file: this.photoTarget.getAttribute('src'), uid: this.uid} }
-                ], true, false);
+                ]);
 
                 promises[0].done(function(jj) {
                     if(jj.success){
@@ -258,9 +277,6 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
                 });
 
             }else{
-                //var event = document.createEvent("Event");
-                //event.initEvent("saveandloginCheckFailed", true, true);
-                //document.dispatchEvent(event);
                 document.dispatchEvent(new CustomEvent("saveandloginCheckFailed",
                 {'detail': {'remote_error': j.remote_error, 'httpcode': j.httpcode}}));
             }
@@ -279,7 +295,6 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
 
         this.photo.setAttribute('src', data);
     };
-
 
     RecognitionClient.prototype.formatDate = function(date){
       var result = "";

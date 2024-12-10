@@ -17,8 +17,7 @@
 /**
  * Version information for the quizaccess_videocapture plugin.
  *
- * @package    quizaccess
- * @subpackage videocapture
+ * @package    quizaccess_videocapture
  * @copyright  2022 onwards Abaco Technology  {@link https://www.abacotechnology.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,6 +26,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 
-$plugin->version   = 2022122912;
-$plugin->requires  = 2021051700;
+$plugin->version   = 2024120600;
+$plugin->requires  = 2024100700;
 $plugin->component = 'quizaccess_videocapture';

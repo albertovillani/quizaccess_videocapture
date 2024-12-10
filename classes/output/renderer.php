@@ -19,13 +19,12 @@
  *
  * @package    quizaccess_videocapture
  * @copyright  2022 Abaco Technology
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or late
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace quizaccess_videocapture\output;
-defined('MOODLE_INTERNAL') || die();
 
-use \html_writer;
+use html_writer;
 
 /**
  * Renderer outputting the quizaccess_videocapture preflight form.
@@ -40,20 +39,23 @@ class renderer extends \plugin_renderer_base {
     /**
      * Display the preflight_form_html.
      *
+     * @param int $usercontext User's context id
+     * @param bool $noimage Has the user an associated profile picture? true/false
      * @return string HTML to output.
      */
-    public function preflight_form_html($user_context, $no_image) {
-		
-		$data = new \stdClass();
-		$data->user_context = $user_context;
-		$data->getparam = time();
+    public function preflight_form_html($usercontext, $noimage) {
+        $data = new \stdClass();
+        $data->user_context = $usercontext;
+        $data->getparam = time();
+        $data->moodle_url = new \moodle_url("/");
 
         // Render the preflight form.
-		if($no_image){
-			$output .= $this->render_from_template('quizaccess_videocapture/preflight_form_no_image_00', $data);
-		}else{
-			$output .= $this->render_from_template('quizaccess_videocapture/preflight_form', $data);
-		}
+        $output = '';
+        if ($noimage) {
+            $output .= $this->render_from_template('quizaccess_videocapture/preflight_form_no_image_00', null);
+        } else {
+            $output .= $this->render_from_template('quizaccess_videocapture/preflight_form', $data);
+        }
         return $output;
     }
 
@@ -62,15 +64,16 @@ class renderer extends \plugin_renderer_base {
      * Returns the videcapture fake block content for the attempt pages.
      *
      * @return string HTML to output.
-     */	
-	public function videocapture_fake_block (){
-		$content = html_writer::start_tag('div', array('class' => 'othernav'));
-		$content .= html_writer::tag('img', '', array('id' => 'photo', 'style' => 'display:none'));
-		$content .= html_writer::tag('video', '', array('id' => 'video'));
-		$content .= html_writer::start_tag('canvas', array('id' => 'canvas', 'style' => 'display:none', 'width' => '210px', 'height' => '157px'));
-		$content .= html_writer::end_tag('canvas');
-		$content .= html_writer::end_tag('div');
-		return $content;
-	}
+     */
+    public function videocapture_fake_block() {
+        $content = html_writer::start_tag('div', ['class' => 'othernav']);
+        $content .= html_writer::tag('img', '', ['id' => 'photo', 'style' => 'display:none']);
+        $content .= html_writer::tag('video', '', ['id' => 'video']);
+        $content .= html_writer::start_tag('canvas', ['id' => 'canvas', 'style' => 'display:none',
+                                            'width' => '210px', 'height' => '157px']);
+        $content .= html_writer::end_tag('canvas');
+        $content .= html_writer::end_tag('div');
+        return $content;
+    }
 
 }

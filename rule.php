@@ -19,140 +19,205 @@
  *
  * @package    quizaccess_videocapture
  * @copyright  2022 Abaco Technology
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or late
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-defined('MOODLE_INTERNAL') || die();
-
-require_once($CFG->dirroot . '/mod/quiz/accessrule/accessrulebase.php');
-require_once($CFG->libdir . '/outputcomponents.php');
+use mod_quiz\form\preflight_check_form;
+use mod_quiz\local\access_rule_base;
+use mod_quiz\quiz_settings;
 
 
 /**
- * If the videocapture flag is checked in the quiz properties, the student face will be compared to the profile picture
+ * If the videocapture flag is checked in the quiz properties, the student face will be compared to
+ * the profile picture
  *
  * @copyright  2022 Abaco Technology
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class quizaccess_videocapture extends quiz_access_rule_base {
+class quizaccess_videocapture extends access_rule_base {
 
-    public static function make(quiz $quizobj, $timenow, $canignoretimelimits) {
-		global $DB;
-		
-		$videocapture_enabled = $DB->get_record('quizaccess_videocap_settings', array("quizid" => $quizobj->get_quiz()->id));
-		
-        if ($videocapture_enabled->videocapture == 1) {
+    /**
+     * Return an appropriately configured instance of this rule, if it is applicable
+     * to the given quiz, otherwise return null.
+     *
+     * @param \mod_quiz\quiz_settings $quizobj information about the quiz in question.
+     * @param int $timenow the time that should be considered as 'now'.
+     * @param bool $canignoretimelimits whether the current user is exempt from
+     *      time limits by the mod/quiz:ignoretimelimits capability.
+     * @return access_rule_base|null the rule, if applicable, else null.
+     */
+    public static function make(quiz_settings $quizobj, $timenow, $canignoretimelimits) {
+        global $DB;
+
+        $videocaptureenabled = $DB->get_record('quizaccess_videocap_settings', ["quizid" => $quizobj->get_quiz()->id]);
+
+        if ($videocaptureenabled->videocapture == 1) {
             return new self($quizobj, $timenow);
         }
 
         return null;
     }
-	
-	public function is_preflight_check_required($attemptid) {
+
+    /**
+     * Is preflight check required?
+     *
+     * @param int $attemptid the id of the attempt.
+     * @return bool required / not required
+     */
+    public function is_preflight_check_required($attemptid) {
         // Warning only required if the attempt is not already started.
         return ($attemptid === null && !is_siteadmin());
     }
-	
-	public function add_preflight_check_form_fields(mod_quiz_preflight_check_form $quizform,
+
+    /**
+     * Function for adding fields to the preflight check form
+     *
+     * @param mod_quiz_preflight_check_form $quizform quiz preflight check form instance.
+     */
+    public function add_preflight_check_form_fields(mod_quiz_preflight_check_form $quizform,
             MoodleQuickForm $mform, $attemptid) {
-		global $PAGE, $COURSE, $USER, $DB;
-		
-		$context = \context_user::instance($USER->id);
-		$no_image = false;
-		
-		$file_type = 'image/png';
-		if(!$file_record = $DB->get_record('files', array('contextid'=>$context->id, 'component'=>'user', 'filearea'=>'icon', 'filepath'=>'/', 'filename'=>'f1.png'))){
-			$file_type = 'image/jpg';
-			$file_record = $DB->get_record('files', array('contextid'=>$context->id, 'component'=>'user', 'filearea'=>'icon', 'filepath'=>'/', 'filename'=>'f1.jpg'));
-		}
-		$fs = get_file_storage();
-		$fileinfo = array(
-				'component'=>'user',
-				'filearea'=>'icon',
-				'itemid'=>0,
-				'contextid'=>$context->id,
-				'filepath'=>'/',
-				'filename'=>$file_record->filename);
+        global $PAGE, $USER, $DB;
 
-		$file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
-			$fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
-		
-		if(!$file){
-			$no_image = true;
-		}
+        $context = \context_user::instance($USER->id);
+        $noimage = false;
 
-		if($no_image){
-			$html = html_writer::start_tag('div', ['class' =>'extcontainer']);
-			$mform->addElement('html', $html);
-			$html = html_writer::tag('span', get_string('recogrequirednoimage','quizaccess_videocapture'), array('class'=>'preflighttitle'));
-		}else{
-			$html = html_writer::start_tag('div', ['class' =>'extcontainer short']);
-			$mform->addElement('html', $html);
-			$html = html_writer::tag('span', get_string('recogrequired','quizaccess_videocapture'), array('class'=>'preflighttitle'));
-		}
-		$mform->addElement('html', $html);
-		
-		if($no_image){
-			$mform->addElement('button', 'startvideocap', get_string('startacquisition', 'quizaccess_videocapture'));
-		}else{
-			$mform->addElement('button', 'startvideocap', get_string('startvideocap', 'quizaccess_videocapture'));
-		}
+        $filetype = 'image/png';
+        if (!$filerecord = $DB->get_record('files', ['contextid' => $context->id, 'component' => 'user', 'filearea' => 'icon',
+                                                     'filepath' => '/', 'filename' => 'f1.png'])) {
+            $filetype = 'image/jpg';
+            $filerecord = $DB->get_record('files', ['contextid' => $context->id, 'component' => 'user', 'filearea' => 'icon',
+                                                    'filepath' => '/', 'filename' => 'f1.jpg']);
+        }
+        $fs = get_file_storage();
+        $fileinfo = ['component' => 'user',
+                     'filearea' => 'icon',
+                     'itemid' => 0,
+                     'contextid' => $context->id,
+                     'filepath' => '/',
+                     'filename' => $filerecord->filename];
 
-		$output = $PAGE->get_renderer('quizaccess_videocapture');
-		$html = $output->preflight_form_html($context->id, $no_image);
-		
-		if($no_image){
-			$user_picture = new user_picture($USER);
-			$user_picture->size = 1;
-			$user_picurl = $user_picture->get_url($PAGE);
+        $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
+            $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
 
-			$PAGE->requires->js_call_amd('quizaccess_videocapture/face_recognition_no_image', 'init', [$USER->id, $context->id, $user_picurl->out()]);
-		}else{
-			$PAGE->requires->js_call_amd('quizaccess_videocapture/face_recognition', 'init');
-		}
+        if (!$file) {
+            $noimage = true;
+        }
 
-		$mform->addElement('html', $html);
-		$mform->addElement('hidden', 'facematched', '0');
-		$mform->disabledif('submitbutton', 'facematched', 'eq', 0);
+        if ($noimage) {
+            $html = html_writer::start_tag('div', ['class' => 'extcontainer']);
+            $mform->addElement('html', $html);
+            $html = html_writer::tag('span', get_string('recogrequirednoimage', 'quizaccess_videocapture'),
+                                      ['class' => 'preflighttitle']);
+        } else {
+            $html = html_writer::start_tag('div', ['class' => 'extcontainer short']);
+            $mform->addElement('html', $html);
+            $html = html_writer::tag('span', get_string('recogrequired', 'quizaccess_videocapture'),
+                                     ['class' => 'preflighttitle']);
+        }
+        $mform->addElement('html', $html);
 
-		//if($no_image){
-			$html = html_writer::end_tag('div');
-			$mform->addElement('html', $html);
-		//}
-		
+        if ($noimage) {
+            $mform->addElement('button', 'startvideocap', get_string('startacquisition', 'quizaccess_videocapture'));
+        } else {
+            $mform->addElement('button', 'startvideocap', get_string('startvideocap', 'quizaccess_videocapture'));
+        }
+
+        $output = $PAGE->get_renderer('quizaccess_videocapture');
+        $html = $output->preflight_form_html($context->id, $noimage);
+
+        if ($noimage) {
+            $userpicture = new user_picture($USER);
+            $userpicture->size = 1;
+            $userpicurl = $userpicture->get_url($PAGE);
+
+            $PAGE->requires->js_call_amd('quizaccess_videocapture/face_recognition_no_image', 'init',
+                                         [$USER->id, $context->id, $userpicurl->out()]);
+        } else {
+            $PAGE->requires->js_call_amd('quizaccess_videocapture/face_recognition', 'init');
+        }
+
+        $mform->addElement('html', $html);
+        $mform->addElement('hidden', 'facematched', '0');
+        $mform->disabledif('submitbutton', 'facematched', 'eq', 0);
+
+        $html = html_writer::end_tag('div');
+        $mform->addElement('html', $html);
+
+        $html = html_writer::start_tag('div', ['class' => 'abacofooter']);
+        $html .= html_writer::start_tag('div', ['class' => 'abacoprivacy']);
+        $html .= html_writer::tag('a', get_string('abacoprivacytitle', 'quizaccess_videocapture'),
+                                  ['id' => 'abacoprivacylink', 'href' => '#']);
+        $html .= html_writer::end_tag('div');
+        $html .= html_writer::div('Powered by', 'abacobrand');
+        $html .= html_writer::end_tag('div');
+        $mform->addElement('html', $html);
     }
-	
-	public static function add_settings_form_fields(
+
+    /**
+     * Function for adding fields to the settings form
+     *
+     * @param mod_quiz_mod_form $quizform quiz settings form instance.
+     * @param MoodleQuickForm $mform quiz settings form instance.
+     */
+    public static function add_settings_form_fields(
             mod_quiz_mod_form $quizform, MoodleQuickForm $mform) {
-			$mform->addElement('advcheckbox', 'videocapture', get_string('facevideocaptureenabled', 'quizaccess_videocapture'), get_string('enable'), null, array(0, 1));
-			$mform->addHelpButton('videocapture', 'facevideocaptureenabled', 'quizaccess_videocapture');
-	}
-	
-	public static function save_settings($quiz) {
-        global $DB;
-		
-		$videocaptureobj = new stdClass();
-		$videocaptureobj->quizid = $quiz->id;
-		$videocaptureobj->videocapture = $quiz->videocapture;
-		
-		$quizrecord = $DB->get_record('quizaccess_videocap_settings', array("quizid" => $quiz->id));
-		if($quizrecord){
-			$videocaptureobj->id = $quizrecord->id;
-			$DB->update_record('quizaccess_videocap_settings', $videocaptureobj);
-		}else{
-			$DB->insert_record('quizaccess_videocap_settings', $videocaptureobj);
-		}
-    }
-	
-	public static function get_settings_sql($quizid) {
-        return array('vdc.videocapture', 'LEFT JOIN {quizaccess_videocap_settings} vdc ON vdc.quizid = quiz.id', array());
+            $mform->addElement('advcheckbox', 'videocapture',
+                                get_string('facevideocaptureenabled', 'quizaccess_videocapture'),
+                                get_string('enable'), null, [0, 1]);
+            $mform->addHelpButton('videocapture', 'facevideocaptureenabled', 'quizaccess_videocapture');
     }
 
+    /**
+     * Save any submitted settings when the quiz settings form is submitted. This
+     * is called from {@link quiz_after_add_or_update()} in lib.php.
+     *
+     * @param stdClass $quiz the data from the quiz form, including $quiz->id
+     *      which is the id of the quiz being saved.
+     */
+    public static function save_settings($quiz) {
+        global $DB;
+
+        $videocaptureobj = new stdClass();
+        $videocaptureobj->quizid = $quiz->id;
+        $videocaptureobj->videocapture = $quiz->videocapture;
+
+        $quizrecord = $DB->get_record('quizaccess_videocap_settings', ["quizid" => $quiz->id]);
+        if ($quizrecord) {
+            $videocaptureobj->id = $quizrecord->id;
+            $DB->update_record('quizaccess_videocap_settings', $videocaptureobj);
+        } else {
+            $DB->insert_record('quizaccess_videocap_settings', $videocaptureobj);
+        }
+    }
+
+    /**
+     * Return the bits of SQL needed to load all the settings from all the access
+     * plugins in one DB query.
+     *
+     * @param int $quizid the id of the quiz we are loading settings for. This
+     * @return array with three elements:
+     *     1. fields: any fields to add to the select list. These should be alised
+     *        if neccessary so that the field name starts the name of the plugin.
+     *     2. joins: any joins (should probably be LEFT JOINS) with other tables that
+     *        are needed.
+     *     3. params: array of placeholder values that are needed by the SQL. You must
+     *        used named placeholders, and the placeholder names should start with the
+     *        plugin name, to avoid collisions.
+     */
+    public static function get_settings_sql($quizid) {
+        return ['vdc.videocapture', 'LEFT JOIN {quizaccess_videocap_settings} vdc ON vdc.quizid = quiz.id', []];
+    }
+
+    /**
+     * Information, such as might be shown on the quiz view page, relating to this restriction.
+     *
+     * @return mixed a message, or array of messages, explaining the restriction
+     *         (may be '' if no message is appropriate).
+     */
     public function description() {
         return get_string('videocaptureintro', 'quizaccess_videocapture', $this->quiz->attempts);
     }
-	
+
     /**
      * Sets up the attempt (review or summary) page with any special extra
      * properties required by this rule. securewindow rule is an example of where
@@ -161,28 +226,29 @@ class quizaccess_videocapture extends quiz_access_rule_base {
      * @param moodle_page $page the page object to initialise.
      */
     public function setup_attempt_page($page) {
-		global $USER, $COURSE;
-		
-		$config = get_config('quizaccess_videocapture');
-	
-		if(!$config->checkduringquiz || strpos($page->url,'attempt.php') === false){
-			return;
-		}
-		$bc = new block_contents();
+        global $USER, $COURSE;
+
+        $config = get_config('quizaccess_videocapture');
+
+        if (!$config->checkduringquiz || strpos($page->url, 'attempt.php') === false) {
+            return;
+        }
+        $bc = new block_contents();
         $bc->attributes['id'] = 'mod_quiz_navblock';
         $bc->attributes['role'] = 'navigation';
         $bc->title = get_string('facevideocaptureenabled', 'quizaccess_videocapture');
-		
-		$output = $page->get_renderer('quizaccess_videocapture');
-        $bc->content = $output->videocapture_fake_block();
-		
-		$regions = $page->blocks->get_regions();
-		$page->blocks->add_fake_block($bc, reset($regions));
-		if(!is_siteadmin()){
-			$context = \context_user::instance($USER->id);
-			$page->requires->js_call_amd('quizaccess_videocapture/face_recognition_block', 'init', 
-			                              array($context->id, $COURSE->id, $config->checkinterval*1000, $config->maxfailedchecks));
-		}
-    }	
 
+        $output = $page->get_renderer('quizaccess_videocapture');
+        $bc->content = $output->videocapture_fake_block();
+
+        $regions = $page->blocks->get_regions();
+        $page->blocks->add_fake_block($bc, reset($regions));
+        if (!is_siteadmin()) {
+            $moodleurl = new moodle_url('/').'';
+            $context = \context_user::instance($USER->id);
+            $page->requires->js_call_amd('quizaccess_videocapture/face_recognition_block', 'init',
+                                          [$context->id, $COURSE->id, $config->checkinterval * 1000,
+                                          $config->maxfailedchecks, $moodleurl]);
+        }
+    }
 }

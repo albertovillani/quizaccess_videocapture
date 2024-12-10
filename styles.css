@@ -1,10 +1,10 @@
 .videocappreflight {
     display: block;
-    height: 200px;
+    height: 450px;
 }
 
 .videocappreflight button {
-	background: chocolate;
+    background: chocolate;
     color: #fff;
     font-size: 12px;
     border: chocolate;
@@ -13,75 +13,75 @@
 
 .videocappreflight button.bckbtn {
     margin-bottom: 8px;
-	background:#cdcdcd;
-	border: #cdcdcd;
+    background:#cdcdcd;
+    border: #cdcdcd;
 }
 
 .videocappreflight button:disabled {
-	background: #ddd;
+    background: #ddd;
 }
 
 .videocappreflight video{
-	float:left;
+    float:left;
 }
 
 .videocappreflight .helpstr {
-	font-size:12px;
+    font-size:12px;
 }
 
 .videocappreflight #recogsuccess{
-	float:left;
-	text-align:center;
-	width: 55%;
-	padding: 0 20px;
+    float:left;
+    text-align:center;
+    width: 55%;
+    padding: 0 20px;
 }
 
 .videocappreflight #recogsuccess #successmessage{
-	font-size:12px;
+    font-size:12px;
 }
 
 .videocappreflight #recogsuccess i{
-	color:green;
-	font-size: 100px;
+    color:green;
+    font-size: 100px;
 }
 
 .videocappreflight #recogfailed .icon_container{
-	margin-bottom:10px;
+    margin-bottom:10px;
 }
 
 .pic_container{
-	width:50%!important;
-	float: left;
+    width:50%!important;
+    float: left;
 }
 
 .videocappreflight #recogfailed{
-	float: left;
+    float: left;
     width: 60%;
-	text-align:center;
-	padding: 0 0 0 20px;	
+    text-align:center;
+    padding: 0 0 0 20px;    
 }
 
 .videocappreflight #recogfailed i{
-	color:red;
-	font-size:30px;
-	margin:5px 6px;
-	
+    color:red;
+    font-size:30px;
+    margin:5px 6px;
+    
 }
 
 .videocappreflight #capturederror i{
-	color:red;
-	font-size:30px;
-	margin:5px 6px;
-	
+    color:red;
+    font-size:30px;
+    margin:5px 6px;
+    
 }
 
 .videocappreflight #capturederror {
-	margin-bottom: 15px;
-	text-align: center;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .videocappreflight #recogfailed #failedmessage{
-	font-size:12px;
+    font-size:12px;
 }
 
 .videocappreflight #recogloader {
@@ -90,38 +90,38 @@
 }
 
 .captured_pic_modal {
-	height: 100px;
+    height: 100px;
 }
 
 .pic_label {
-	display: block;
-	font-size: 12px;
-	margin-bottom: 8px;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 8px;
 }
 
 .snapshots_modal_container{
-	overflow: auto;
+    overflow: auto;
 }
 
 .snapshots_modal_container img.snapshot{
-	float: left;
-	margin-right: 5px
+    float: left;
+    margin-right: 5px
 }
 
 .videocappreflight #recogloader {
-	width:50%;
+    width:50%;
 }
 
 .videocappreflight #container01.shoot #videocapcontainer {
-	float:left;
-	width:50%;
-	text-align:center;
+    float:left;
+    width:50%;
+    text-align:center;
 }
 
 .videocappreflight #container01.shoot #capturedpicture {
-	float:left;
-	width:50%;
-	text-align: center;
+    float:left;
+    width:50%;
+    text-align: center;
 }
 
 .videocappreflight #container01.shoot #recogfailed{
@@ -135,125 +135,140 @@
 */
 
 .videocappreflight #container01.shoot #recogsuccess{
-	width: 100%;
+    width: 100%;
 }
 
 .videocappreflight #container01 #recogsuccess i{
-	font-size: 66px;
+    font-size: 66px;
 }
 .videocappreflight #container01.shoot #recogsuccess i{
-	float: left;
+    float: left;
 }
 
 .videocappreflight #container01.shoot .btncontainer {
-	width:50%; 
-	text-align: center;
-	float:left;
+    width:50%; 
+    text-align: center;
+    float:left;
 }
 
 .videocappreflight #container01.shoot #actionbtnsbar {
-	height:30px;
-	margin-bottom:10px;
+    height:30px;
+    margin-bottom:10px;
 }
 
 .videocappreflight #container01.shoot video{
-	float:unset;
+    float:unset;
 }
 
 .videocappreflight #container01.shoot #recogloader {
-	width:100%;
+    width:100%;
 }
 
 .videocappreflight #container01.shoot #videocapcontainer {
-	margin-top: 15px;
-	float:left;
+    margin-top: 15px;
+    float:left;
 }
 
 .videocappreflight #container01 #capturedpicture {
-	float:left;
-	width:100%;
-	margin-top: 15px;
+    float:left;
+    width:100%;
+    margin-top: 15px;
 }
 
 .videocappreflight #container01 .loginfeedback{
-	float: left;
+    float: left;
     width: 50%;
 }
 
 .videocappreflight #container01 #videocheck{
-	margin-top:15px;
+    margin-top:15px;
 }
 
 .extcontainer {
-	height: 500px;
-	background: #f2f2f2;
-	padding: 15px;
+    height: 500px;
+    background: #f2f2f2;
+    padding: 15px;
 }
 
 .extcontainer.short {
-	height: 380px;
+    height: 380px;
 }
 
 .videocappreflight #recogfailed.accessonly i{
-	margin-top: 20px;
-	float:left;
+    margin-top: 20px;
+    float:left;
+}
+
+.abacofooter {
+    height: 40px;
+	width: 562px;
+	background: #f2f2f2;
+    padding: 0 5px;
+    margin-bottom: 10px;
+}
+
+.abacofooter #abacoprivacylink {
+    font-size: 12px;
+}
+
+.abacoprivacy {
+    float: left;
 }
 
 .abacobrand {
-	position: absolute;
-    bottom: 89px;
+    float: right;	
     right: 20px;
     padding-right: 66px;
     background-image:url([[pix:quizaccess_videocapture|abaco-logo-pos-t1]]);
     background-repeat: no-repeat;
     display: block;
-    height: 26px;
     background-size: contain;
     font-size: 9px;
-    padding-top: 7px;
-    background-position-x: 50px;	
+    padding-top: 4px;
+    background-position-x: 50px;
+    height: 23px;
 }
 
 .videocappreflight .generaltitle{
-	font-weight: 500;
+    font-weight: 500;
     font-size: 15px;
     margin-bottom: 10px;
 }
 
 .videocappreflight .sectiontitle{
-	font-weight: 400;
+    font-weight: 400;
     font-size: 15px;
 }
 
 .videocappreflight .radiocontainer{
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .videocappreflight .btnbar{
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .videocappreflight .sectionnavbar button{
-	float:left;
-	margin-right: 15px;
+    float:left;
+    margin-right: 15px;
 }
 
 .videocappreflight #container01 .photoframe {
-	border: 1px solid #d1d1d1;
+    border: 1px solid #d1d1d1;
     height: 157px;
     padding-top: 23px;
     background: ghostwhite;
     margin-bottom: 5px;
-	text-align: center;
+    text-align: center;
 }
 
 .videocappreflight #container01.upload .photoframe {
-	width: 190px;
-	position: relative;
+    width: 190px;
+    position: relative;
     left: 155px;
 }
 
 .videocappreflight #container01.upload .shot_container {
-	text-align:center;
-	margin-bottom: 15px;
+    text-align:center;
+    margin-bottom: 15px;
 }

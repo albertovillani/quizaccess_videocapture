@@ -19,34 +19,21 @@
  *
  * @package    quizaccess_videocapture
  * @copyright  2023 Abaco Technology
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or late
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 
-defined('MOODLE_INTERNAL') || die();
 
-function quizaccess_videocapture_mktempdir($dir, $prefix='') {
-	global $CFG;
-
-	if (substr($dir, -1) != '/') {
-		$dir .= '/';
-	}
-
-	do {
-		$path = $dir.$prefix.mt_rand(0, 9999999);
-	} while (file_exists($path));
-
-	check_dir_exists($path);
-
-	return $path;
-}
-
-
-
-function quizaccess_videocapture_decode_image($data){
-	$data = str_replace(" ", "+", $data);
-	list($type, $data) = explode(';', $data);
-	list(, $data)      = explode(',', $data);
-	$imagedata = base64_decode($data);
-	return $imagedata;
+/**
+ * Decodes the base64 encoded images
+ *
+ * @param string $data Base64 encoded image
+ * @return array
+ */
+function quizaccess_videocapture_decode_image($data) {
+    $data = str_replace(" ", "+", $data);
+    list($type, $data) = explode(';', $data);
+    list(, $data)      = explode(',', $data);
+    $imagedata = base64_decode($data);
+    return [$type, $imagedata];
 }

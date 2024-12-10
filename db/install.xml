@@ -7,19 +7,19 @@
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Foreign key to quiz id."/>
-		<FIELD NAME="videocapture" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="Videocapture enabled?"/>
+        <FIELD NAME="videocapture" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="Videocapture enabled?"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
         <KEY NAME="quizid" TYPE="foreign-unique" FIELDS="quizid" REFTABLE="quiz" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
-	<TABLE NAME="quizaccess_videocap_tokens" COMMENT="Table for storing the Abaco Technology Biometrics API token">
+    <TABLE NAME="quizaccess_videocap_tokens" COMMENT="Table for storing the Abaco Technology Biometrics API token">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="token" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-		<FIELD NAME="timeexpires" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timeexpires" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
