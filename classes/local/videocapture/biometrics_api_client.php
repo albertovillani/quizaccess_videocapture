@@ -161,25 +161,26 @@ class biometrics_api_client {
      * @return string a json structure with the call result
      */
     private function make_call($url, $data = null, $token = null) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
+        global $CFG;
+        require_once("$CFG->libdir/filelib.php");
+        $curl = new \curl();
+
         $headers = [];
         if (!is_null($token)) {
             $headers[] = "Authorization: bearer ".$token;
         }
         $headers[] = "Accept: application/json ";
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $curl->setopt(['CURLOPT_HTTPHEADER' => $headers]);
+        $curl->setopt(['CURLOPT_HEADER' => 0]);
+        $curl->setopt(['CURLOPT_RETURNTRANSFER' => true]);
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        if (!$result = curl_exec($ch)) {
+        if (!$result = $curl->post($url, $data)) {
             throw new \moodle_exception('Connection error: php cURL could not connect to the Abaco Technology Biometrics API',
                                         'block_videocapture');
         }
 
-        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlinfo = $curl->get_info();
+        $httpcode = $curlinfo['http_code'];
         if ($httpcode != 200) {
             $decodedresult = json_decode($result);
             return json_encode(['error' => true, 'msg' => $decodedresult->error, 'httpcode' => $httpcode]);

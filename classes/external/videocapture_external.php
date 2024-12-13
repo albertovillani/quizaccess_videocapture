@@ -342,8 +342,8 @@ class videocapture_external extends \external_api {
         $filetype = $filerecord->mimetype;
 
         $fs = get_file_storage();
-        $fileinfo = ['component' => 'quizaccess_videocapture',
-                'filearea' => 'userpicture',
+        $fileinfo = ['component' => 'user',
+                'filearea' => 'draft',
                 'itemid' => $formdata['newpicture'],
                 'contextid' => $context->id,
                 'filepath' => '/',
