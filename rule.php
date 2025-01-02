@@ -74,7 +74,7 @@ class quizaccess_videocapture extends access_rule_base {
      *
      * @param mod_quiz_preflight_check_form $quizform quiz preflight check form instance.
      */
-    public function add_preflight_check_form_fields(mod_quiz_preflight_check_form $quizform,
+    public function add_preflight_check_form_fields(preflight_check_form $quizform,
             MoodleQuickForm $mform, $attemptid) {
         global $PAGE, $USER, $DB;
 
