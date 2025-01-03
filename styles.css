@@ -58,21 +58,21 @@
     float: left;
     width: 60%;
     text-align:center;
-    padding: 0 0 0 20px;    
+    padding: 0 0 0 20px;
 }
 
 .videocappreflight #recogfailed i{
     color:red;
     font-size:30px;
     margin:5px 6px;
-    
+
 }
 
 .videocappreflight #capturederror i{
     color:red;
     font-size:30px;
     margin:5px 6px;
-    
+
 }
 
 .videocappreflight #capturederror {
@@ -146,7 +146,7 @@
 }
 
 .videocappreflight #container01.shoot .btncontainer {
-    width:50%; 
+    width:50%;
     text-align: center;
     float:left;
 }
@@ -201,8 +201,8 @@
 
 .abacofooter {
     height: 40px;
-	width: 562px;
-	background: #f2f2f2;
+    width: 562px;
+    background: #f2f2f2;
     padding: 0 5px;
     margin-bottom: 10px;
 }
@@ -216,7 +216,7 @@
 }
 
 .abacobrand {
-    float: right;	
+    float: right;
     right: 20px;
     padding-right: 66px;
     background-image:url([[pix:quizaccess_videocapture|abaco-logo-pos-t1]]);
@@ -271,4 +271,8 @@
 .videocappreflight #container01.upload .shot_container {
     text-align:center;
     margin-bottom: 15px;
+}
+
+.abacoprivacyextlink {
+    font-size:12px;
 }

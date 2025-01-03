@@ -33,6 +33,7 @@ $string['abacoprivacy'] = 'Durante il controllo di riconoscimento facciale, le s
 <li>Dopo aver eseguito il controllo, entrambe le immagini vengono eliminate;</li>
 <li>Nessun dato personale viene salvato durante l\'intero processo.</li>
 </ul>';
+$string['abacoprivacyextlink'] = 'Abaco Technology privacy policy';
 $string['abacoprivacytitle'] = 'Riconoscimento facciale e privacy';
 $string['api_password'] = 'Biometrics API password';
 $string['api_password_desc'] = 'Biometric API password';

@@ -33,6 +33,7 @@ $string['abacoprivacy'] = 'During the face recognition process the following ste
 <li>After performing the check both images are deleted;</li>
 <li>No personal data is saved during the whole process.</li>
 </ul>';
+$string['abacoprivacyextlink'] = 'Abaco Technology privacy policy';
 $string['abacoprivacytitle'] = 'Face recognition privacy notice';
 $string['api_password'] = 'Biometric API password';
 $string['api_password_desc'] = 'Biometric API password';
