@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace quizaccess_numattempts\privacy;
+namespace quizaccess_videocapture\privacy;
 
 /**
  * Privacy Subsystem for quizaccess_videocapture implementing null_provider.
