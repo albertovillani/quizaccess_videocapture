@@ -79,33 +79,37 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
             this.canvas = document.getElementById(canvasid);
             this.photo = document.getElementById(photoid);
 
-            navigator.getMedia = ( navigator.getUserMedia ||
-                                   navigator.webkitGetUserMedia ||
-                                   navigator.mozGetUserMedia ||
-                                   navigator.msGetUserMedia);
-
-            navigator.getMedia(
-                {
-                video: true,
-                audio: false
-                },
-                function(stream) {
-                    this.stream = stream;
-                    if (navigator.mozGetUserMedia) {
-                      this.video.mozSrcObject = stream;
-                    } else if(navigator.webkitGetUserMedia){
-                      this.video.srcObject = stream;
-                    } else {
-                      var vendorURL = window.URL || window.webkitURL;
-                      this.video.src = vendorURL.createObjectURL(stream);
-                    }
-                    this.video.play();
-                }.bind(this),
-                function() {
-                    //console.log("An error occured! " + err);
+            var constraints = { video: true, audio: false };
+            var onSuccess = function(stream) {
+                this.stream = stream;
+                if ('srcObject' in this.video) {
+                    this.video.srcObject = stream;
+                } else if (navigator.mozGetUserMedia) {
+                    this.video.mozSrcObject = stream;
+                } else {
+                    var vendorURL = window.URL || window.webkitURL;
+                    this.video.src = vendorURL.createObjectURL(stream);
                 }
+                this.video.play();
+            }.bind(this);
 
-            );
+            var onError = function() {
+                //console.log("An error occurred! " + err);
+            };
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia(constraints)
+                    .then(onSuccess)
+                    .catch(onError);
+            } else {
+                var getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                               navigator.mozGetUserMedia || navigator.msGetUserMedia;
+                if (getMedia) {
+                    getMedia.call(navigator, constraints, onSuccess, onError);
+                } else {
+                    //console.error("getUserMedia not supported");
+                }
+            }
 
 
             this.video.addEventListener('canplay', function(){
