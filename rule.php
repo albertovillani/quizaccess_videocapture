@@ -137,7 +137,8 @@ class quizaccess_videocapture extends access_rule_base {
         }
 
         $mform->addElement('html', $html);
-        $mform->addElement('hidden', 'facematched', '0');
+	$mform->addElement('hidden', 'facematched', '0');
+	$mform->setType('facematched',PARAM_BOOL);
         $mform->disabledif('submitbutton', 'facematched', 'eq', 0);
 
         $html = html_writer::end_tag('div');
