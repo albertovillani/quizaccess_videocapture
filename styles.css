@@ -1,3 +1,91 @@
+.audio-monitor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f7f7f7;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 12px;
+}
+
+.audio-monitor__label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+}
+
+.audio-monitor__icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #bdbdbd;
+}
+
+.audio-monitor__text {
+    font-size: 12px;
+    color: #333;
+}
+
+.audio-monitor.status-ready .audio-monitor__icon {
+    background: #2e7d32;
+}
+
+.audio-monitor.status-silence .audio-monitor__icon {
+    background: #2e7d32;
+}
+
+.audio-monitor.status-fallback .audio-monitor__icon {
+    background: #f9a825;
+}
+
+.audio-monitor.status-speaking .audio-monitor__icon {
+    background: #c62828;
+}
+
+.audio-monitor.status-error .audio-monitor__icon {
+    background: #d32f2f;
+}
+
+.audio-monitor.status-idle .audio-monitor__icon {
+    background: #bdbdbd;
+}
+
+.audio-violation-modal {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.audio-violation-modal i {
+    font-size: 48px;
+    color: #c62828;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.audio-violation-modal p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.audio-monitor-block-modal {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.audio-monitor-block-modal i {
+    font-size: 48px;
+    color: #d32f2f;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.audio-monitor-block-modal p {
+    font-size: 14px;
+    margin: 0;
+}
+
 .videocappreflight {
     display: block;
     height: 450px;

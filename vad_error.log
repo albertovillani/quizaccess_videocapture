@@ -1,0 +1,53 @@
+first.js:1310 Debug module "M.reactive" loaded.
+first.js:1310 Registering new reactive instance "M.reactive.ProcessMonitor"
+first.js:1310 Registering new reactive instance "M.reactive.CourseEditor2"
+first.js:5382 Page is missing a drawer region
+first.js:5382 Page is missing a drawer toggle link
+first.js:241 Starting Moodle session timeout warning.
+first.js:5480  [Deprecation] The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+(anonymous) @ first.js:5480
+Promise.then
+s.init @ first.js:5480
+start @ first.js:5509
+(anonymous) @ first.js:5472
+dispatch @ jquery-3.7.1.min.js:2
+v.handle @ jquery-3.7.1.min.js:2
+first.js:5480  Unexpected VAD module export shape Module {Symbol(Symbol.toStringTag): 'Module'}Symbol(Symbol.toStringTag): "Module" []length: 0lastIndex: (...)lastItem: (...)[[Prototype]]: Array(0)at: ƒ at()concat: ƒ concat()constructor: ƒ Array()copyWithin: ƒ copyWithin()entries: ƒ entries()every: ƒ every()fill: ƒ fill()filter: ƒ filter()filterOut: ƒ filterOut(r)find: ƒ find()findIndex: ƒ findIndex()findLast: ƒ findLast()findLastIndex: ƒ findLastIndex()flat: ƒ flat()flatMap: ƒ flatMap()forEach: ƒ forEach()includes: ƒ includes()indexOf: ƒ indexOf()join: ƒ join()keys: ƒ keys()lastIndex: (...)lastIndexOf: ƒ lastIndexOf()lastItem: (...)length: 0map: ƒ map()pop: ƒ pop()push: ƒ push()reduce: ƒ reduce()reduceRight: ƒ reduceRight()reverse: ƒ reverse()shift: ƒ shift()slice: ƒ slice()some: ƒ some()sort: ƒ sort()splice: ƒ splice()toLocaleString: ƒ toLocaleString()toReversed: ƒ toReversed()toSorted: ƒ toSorted()toSpliced: ƒ toSpliced()toString: ƒ toString()uniqueBy: ƒ uniqueBy(t)unshift: ƒ unshift()values: ƒ values()with: ƒ with()Symbol(Symbol.iterator): ƒ values()Symbol(Symbol.unscopables): {at: true, copyWithin: true, entries: true, fill: true, find: true, …}get lastIndex: ƒ lastIndex()get lastItem: ƒ lastItem()set lastItem: ƒ lastItem(t)[[Prototype]]: Objectconstructor: ƒ Object()hasOwnProperty: ƒ hasOwnProperty()isPrototypeOf: ƒ isPrototypeOf()propertyIsEnumerable: ƒ propertyIsEnumerable()toLocaleString: ƒ toLocaleString()toString: ƒ toString()valueOf: ƒ valueOf()__defineGetter__: ƒ __defineGetter__()__defineSetter__: ƒ __defineSetter__()__lookupGetter__: ƒ __lookupGetter__()__lookupSetter__: ƒ __lookupSetter__()__proto__: (...)get __proto__: ƒ __proto__()set __proto__: ƒ __proto__()
+(anonymous) @ first.js:5480
+Promise.then
+a @ first.js:5480
+s._initVad @ first.js:5480
+(anonymous) @ first.js:5480
+Promise.then
+s.init @ first.js:5480
+start @ first.js:5509
+(anonymous) @ first.js:5472
+dispatch @ jquery-3.7.1.min.js:2
+v.handle @ jquery-3.7.1.min.js:2
+first.js:5509  VAD engine error Error: Unable to load libfvad factory
+    at first.js:5480:1124
+E @ first.js:5509
+r @ first.js:5480
+(anonymous) @ first.js:5480
+Promise.catch
+s._initVad @ first.js:5480
+(anonymous) @ first.js:5480
+Promise.then
+s.init @ first.js:5480
+start @ first.js:5509
+(anonymous) @ first.js:5472
+dispatch @ jquery-3.7.1.min.js:2
+v.handle @ jquery-3.7.1.min.js:2
+first.js:5480  Uncaught (in promise) Error: Unable to load libfvad factory
+    at first.js:5480:1124
+(anonymous) @ first.js:5480
+Promise.then
+a @ first.js:5480
+s._initVad @ first.js:5480
+(anonymous) @ first.js:5480
+Promise.then
+s.init @ first.js:5480
+start @ first.js:5509
+(anonymous) @ first.js:5472
+dispatch @ jquery-3.7.1.min.js:2
+v.handle @ jquery-3.7.1.min.js:2

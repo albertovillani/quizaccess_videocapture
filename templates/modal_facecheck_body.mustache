@@ -33,6 +33,11 @@
 {{#lock}}
 <p class="msg-locked">{{#str}} rek_modal_message_locked, quizaccess_videocapture {{/str}}</p>
 {{/lock}}
+{{^lock}}
+    {{#remainingmessage}}
+        <p class="msg-remaining">{{{remainingmessage}}}</p>
+    {{/remainingmessage}}
+{{/lock}}
 
 <div class="pic_container">
 <span class="pic_label">{{#str}} rek_modal_user_pic, quizaccess_videocapture {{/str}}</span>

@@ -24,6 +24,7 @@
 
 namespace quizaccess_videocapture\external;
 use quizaccess_videocapture\local\videocapture\biometrics_api_client;
+use quizaccess_videocapture\local\violation_tracker;
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/externallib.php');
@@ -71,12 +72,13 @@ class videocapture_external extends \external_api {
      * @return array
      */
     private static function check_snapshot_relay($file, $config, $target) {
-        global $DB, $USER, $SESSION;
+        global $DB, $USER;
 
         $params = self::validate_parameters(self::check_snapshot_parameters(), ['file' => $file, 'target' => $target]);
         self::validate_context(\context_system::instance());
         require_sesskey();
         $sourceimagedata = $file;
+        $maxfailedchecks = isset($config->maxfailedchecks) ? (int)$config->maxfailedchecks : 3;
 
         if ($target == null) {
             $context = \context_user::instance($USER->id);
@@ -119,18 +121,19 @@ class videocapture_external extends \external_api {
                 $retval['httpcode'] = $checkresult->httpcode;
                 $retval['match'] = null;
                 $retval['failed_attempt'] = null;
+                $retval['locked'] = false;
+                $retval['remainingattempts'] = $maxfailedchecks;
+                $retval['state'] = violation_tracker::get_state($maxfailedchecks, violation_tracker::SOURCE_FACE);
                 return $retval;
             }
             $result = $checkresult->Similarity;
         }
 
         if ($result > 0) {
-            $SESSION->videocapturefails = 0;
+            violation_tracker::reset(violation_tracker::SOURCE_FACE);
+            $state = violation_tracker::get_state($maxfailedchecks, violation_tracker::SOURCE_FACE);
         } else {
-            if (!isset($SESSION->videocapturefails)) {
-                $SESSION->videocapturefails = 0;
-            }
-            $SESSION->videocapturefails++;
+            $state = violation_tracker::increment(violation_tracker::SOURCE_FACE, $maxfailedchecks);
         }
 
         $retval = [];
@@ -138,7 +141,10 @@ class videocapture_external extends \external_api {
         $retval['msg'] = null;
         $retval['httpcode'] = '200';
         $retval['match'] = $result;
-        $retval['failed_attempt'] = $SESSION->videocapturefails;
+        $retval['failed_attempt'] = $state['faceviolations']['count'];
+        $retval['locked'] = $state['locked'];
+        $retval['remainingattempts'] = $state['faceviolations']['remaining'];
+        $retval['state'] = $state;
 
         return $retval;
     }
@@ -155,6 +161,133 @@ class videocapture_external extends \external_api {
             'msg' => new \external_value(PARAM_TEXT, 'Error or success message'),
             'match' => new \external_value(PARAM_FLOAT, 'The match of the snapshot against the target picture'),
             'failed_attempt' => new \external_value(PARAM_INT, 'The number of consecutive failed attempts'),
+            'locked' => new \external_value(PARAM_BOOL, 'Whether the attempt is now locked'),
+            'remainingattempts' => new \external_value(PARAM_INT, 'Remaining allowed face violations before lock'),
+            'state' => self::violation_state_structure(),
+        ]);
+    }
+
+    /**
+     * Parameters for logging a non-facial violation.
+     *
+     * @return \external_function_parameters
+     */
+    public static function log_violation_parameters() {
+        return new \external_function_parameters([
+            'source' => new \external_value(PARAM_ALPHAEXT, 'Violation source identifier'),
+        ]);
+    }
+
+    /**
+     * Record a violation (e.g. microphone loss or speech detection).
+     *
+     * @param string $source Violation origin.
+     * @return array
+     */
+    public static function log_violation($source) {
+        $params = self::validate_parameters(self::log_violation_parameters(), ['source' => $source]);
+        self::validate_context(\context_system::instance());
+        require_sesskey();
+
+        $config = get_config('quizaccess_videocapture');
+        $maxfailedchecks = isset($config->maxfailedchecks) ? (int)$config->maxfailedchecks : 3;
+
+        $state = violation_tracker::increment($params['source'], $maxfailedchecks);
+
+        return [
+            'count' => $state['count'],
+            'locked' => $state['locked'],
+            'remainingattempts' => $state['remaining'],
+            'state' => $state,
+        ];
+    }
+
+    /**
+     * Return structure for log_violation.
+     *
+     * @return \external_single_structure
+     */
+    public static function log_violation_returns() {
+        return new \external_single_structure([
+            'count' => new \external_value(PARAM_INT, 'Recorded violations for the requested source'),
+            'locked' => new \external_value(PARAM_BOOL, 'Whether the attempt is now locked'),
+            'remainingattempts' => new \external_value(PARAM_INT, 'Remaining allowed violations for the requested source before lock'),
+            'state' => self::violation_state_structure(),
+        ]);
+    }
+
+    /**
+     * Parameters for resetting violation counters.
+     *
+     * @return \external_function_parameters
+     */
+    public static function reset_violations_parameters() {
+        return new \external_function_parameters([
+            'source' => new \external_value(PARAM_ALPHANUMEXT, 'Violation source to reset', VALUE_DEFAULT, ''),
+        ]);
+    }
+
+    /**
+     * Reset one or all violation counters in the current session.
+     *
+     * @param string $source Optional source identifier, empty string resets everything.
+     * @return array
+     */
+    public static function reset_violations($source = '') {
+        $params = self::validate_parameters(self::reset_violations_parameters(), ['source' => $source]);
+        self::validate_context(\context_system::instance());
+        require_sesskey();
+
+        $config = get_config('quizaccess_videocapture');
+        $maxfailedchecks = isset($config->maxfailedchecks) ? (int)$config->maxfailedchecks : 3;
+
+        $target = trim($params['source']) === '' ? null : $params['source'];
+        violation_tracker::reset($target);
+        $state = violation_tracker::get_state($maxfailedchecks);
+
+        return [
+            'state' => $state,
+        ];
+    }
+
+    /**
+     * Return structure for reset_violations.
+     *
+     * @return \external_single_structure
+     */
+    public static function reset_violations_returns() {
+        return new \external_single_structure([
+            'state' => self::violation_state_structure(),
+        ]);
+    }
+
+    /**
+     * Describe the violation counters payload returned by the web service.
+     *
+     * @return \external_single_structure
+     */
+    private static function violation_state_structure(): \external_single_structure {
+        return new \external_single_structure([
+            'count' => new \external_value(PARAM_INT, 'Channel specific violation count'),
+            'locked' => new \external_value(PARAM_BOOL, 'Overall lock state'),
+            'remaining' => new \external_value(PARAM_INT, 'Channel specific remaining violations'),
+            'remainingattempts' => new \external_value(PARAM_INT, 'Alias of remaining for backwards compatibility'),
+            'source' => new \external_value(PARAM_ALPHANUMEXT, 'Active violation source alias'),
+            'faceviolations' => self::violation_channel_structure(),
+            'audioviolations' => self::violation_channel_structure(),
+        ]);
+    }
+
+    /**
+     * Describe the per-channel violation data structure.
+     *
+     * @return \external_single_structure
+     */
+    private static function violation_channel_structure(): \external_single_structure {
+        return new \external_single_structure([
+            'count' => new \external_value(PARAM_INT, 'Recorded violations for this channel'),
+            'locked' => new \external_value(PARAM_BOOL, 'Whether this channel triggered a lock'),
+            'remaining' => new \external_value(PARAM_INT, 'Remaining violations allowed for this channel before lock'),
         ]);
     }
 

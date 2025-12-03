@@ -23,10 +23,47 @@
  */
 
 define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates',
-'core/ajax', 'quizaccess_videocapture/face_recognition_client'],
- function($, ModalFactory, ModalEvents, Templates, ajax, RC) {
+'core/ajax', 'quizaccess_videocapture/face_recognition_client', 'quizaccess_videocapture/audio_monitor'],
+ function($, ModalFactory, ModalEvents, Templates, ajax, RC, AudioMonitor) {
 
     var uid = null;
+    const submitsel = 'input[name="submitbutton"]';
+    const facesel = 'input[name="facematched"]';
+    const audiosel = 'input[name="audiocheck"]';
+
+    const isAudioAllowed = () => {
+        const $audio = $(audiosel);
+        if (!$audio.length) {
+            return true;
+        }
+        return $audio.val() === '1';
+    };
+
+    const syncSubmitButton = () => {
+        const $submit = $(submitsel);
+        if (!$submit.length) {
+            return;
+        }
+        const faceMatched = $(facesel).val() === '1';
+        if (faceMatched && isAudioAllowed()) {
+            $submit.removeAttr('disabled');
+        } else {
+            $submit.attr('disabled', 'disabled');
+        }
+    };
+
+    const setFacematched = (matched) => {
+        const $face = $(facesel);
+        if (!$face.length) {
+            return;
+        }
+        const value = matched ? '1' : '0';
+        if ($face.val() !== value) {
+            $face.val(value);
+        }
+        $face.trigger('change');
+        syncSubmitButton();
+    };
 
     return{
         init: function(userid){
@@ -35,6 +72,12 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates',
             RC.setFlow('shoot');
             RC.setUid(uid);
             RC.setPhotoTarget('photo_target');
+            $(audiosel).on('change.vcSubmitGuard', syncSubmitButton);
+            $(facesel).on('change.vcSubmitGuard', syncSubmitButton);
+            syncSubmitButton();
+            AudioMonitor.start().catch(() => {
+                // Error messaging handled by the monitor UI.
+            });
 
             document.getElementById('video').addEventListener('canplay', function(){
                 $('#recogloader').show();
@@ -86,8 +129,9 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates',
                 $('.preflighttitle').show();
                 $('#fitem_id_startvideocap').show();
                 $('.videocappreflight').hide();
-                $('input[name="submitbutton"]').attr('disabled', 'disabled');
+                setFacematched(false);
                 RC.releaseStream();
+                AudioMonitor.stop();
             });
 
             document.addEventListener('newpictureCheckSuccess', () =>{
@@ -114,8 +158,7 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates',
                 $('#recogfailed').hide();
                 $('#recogloader').hide();
                 $('.actionbtn').attr('disabled', true);
-                $('input[name="facematched"]').attr('value', '1');
-                $('input[name="submitbutton"]').removeAttr('disabled');
+                setFacematched(true);
                 $('#recogsuccess').show();
 
             });

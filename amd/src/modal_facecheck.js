@@ -40,6 +40,7 @@ export default class ModalFaceCheck extends Modal {
         super(root);
         this.exit_link = null;
         this.rec_client = null;
+        this.exit_handler = null;
 
     }
 
@@ -51,8 +52,34 @@ export default class ModalFaceCheck extends Modal {
             this.destroy();
         }.bind(this));
 
-        this.getModal().on(CustomEvents.events.activate, SELECTORS.EXIT_QUIZ_BUTTON, function() {
-            window.location.href = this.exit_link;
+        this.getModal().on(CustomEvents.events.activate, SELECTORS.EXIT_QUIZ_BUTTON, function(event) {
+            if (event && typeof event.preventDefault === 'function') {
+                event.preventDefault();
+            }
+            const navigate = () => {
+                window.location.href = this.exit_link;
+            };
+            if (typeof this.exit_handler !== 'function') {
+                navigate();
+                return;
+            }
+            try {
+                const result = this.exit_handler();
+                if (result && typeof result.then === 'function') {
+                    result.catch((error) => {
+                        if (window.console && typeof window.console.error === 'function') {
+                            window.console.error('Facecheck exit handler failed', error);
+                        }
+                    }).finally(navigate);
+                } else {
+                    navigate();
+                }
+            } catch (error) {
+                if (window.console && typeof window.console.error === 'function') {
+                    window.console.error('Facecheck exit handler errored', error);
+                }
+                navigate();
+            }
         }.bind(this));
     }
 
@@ -62,6 +89,10 @@ export default class ModalFaceCheck extends Modal {
 
     setRecClient (new_rc){
         this.rec_client = new_rc;
+    }
+
+    setExitHandler (callback){
+        this.exit_handler = typeof callback === 'function' ? callback : null;
     }
 
     hideTryAgain (){

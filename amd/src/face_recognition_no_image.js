@@ -27,14 +27,25 @@ import ModalCancel from 'core/modal_cancel';
 import Templates from 'core/templates';
 import Notification from 'core/notification';
 import {getString} from 'core/str';
+import AudioMonitor from 'quizaccess_videocapture/audio_monitor';
 
 export const init = (userid, usercontextid, user_picurl) => {
+
+    AudioMonitor.init({
+        containerSelector: '#audio-monitor',
+        hiddenInputSelector: 'input[name="audiocheck"]',
+        submitButtonSelector: 'input[name="submitbutton"]',
+        facematchedSelector: 'input[name="facematched"]'
+    });
 
     $('button[name="startvideocap"]').on('click', function(){
         $('.preflighttitle').hide();
         $('#fitem_id_startvideocap').hide();
         $('.videocappreflight #container00').show();
         $('.videocappreflight').show();
+        AudioMonitor.start().catch(() => {
+            // Errors are surfaced through the monitor panel.
+        });
     });
 
     $('.continue00').on('click', function(e){
@@ -68,6 +79,10 @@ export const init = (userid, usercontextid, user_picurl) => {
     $('#abacoprivacylink').on('click', function (e){
         e.preventDefault();
         privacyModalFunction();
+    });
+
+    $('input[name="cancel"]').on('click', () => {
+        AudioMonitor.stop();
     });
 };
 

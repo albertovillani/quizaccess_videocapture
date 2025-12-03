@@ -58,6 +58,22 @@ $functions = [
         'ajax'          => true,
         'loginrequired' => false,
     ],
+    'quizaccess_videocapture_log_violation' => [
+        'classname'     => 'quizaccess_videocapture\external\videocapture_external',
+        'methodname'    => 'log_violation',
+        'description'   => 'Record a proctoring violation and return the updated lock state.',
+        'type'          => 'write',
+        'ajax'          => true,
+        'loginrequired' => true,
+    ],
+    'quizaccess_videocapture_reset_violations' => [
+        'classname'     => 'quizaccess_videocapture\external\videocapture_external',
+        'methodname'    => 'reset_violations',
+        'description'   => 'Reset the proctoring violation counters for the current session.',
+        'type'          => 'write',
+        'ajax'          => true,
+        'loginrequired' => true,
+    ],
 ];
 
 $services = [
@@ -65,7 +81,9 @@ $services = [
           'functions' => ['quizaccess_videocapture_check_snapshot',
                                 'quizaccess_videocapture_check_profile_picture',
                                 'quizaccess_videocapture_save_profile_picture',
-                                'quizaccess_videocapture_check_uploaded_profile_picture'],
+                                'quizaccess_videocapture_check_uploaded_profile_picture',
+                                'quizaccess_videocapture_log_violation',
+                                'quizaccess_videocapture_reset_violations'],
           'restrictedusers' => 0,
           'enabled' => 1,
           'shortname' => 'quizrulevideocaptureservice',

@@ -191,13 +191,45 @@ define(['jquery', 'core/modal_factory', 'core/modal_events', 'core/templates', '
         ]);
 
         promises[0].done(function(j) {
-            if(j.match > 0){
-                var event = document.createEvent("Event");
-                event.initEvent("snapshotCheckSuccess", true, true);
-                document.dispatchEvent(event);
-            }else{
-                document.dispatchEvent(new CustomEvent("snapshotCheckFailed",
-                {'detail': {'remote_error': j.remote_error, 'httpcode': j.httpcode, 'failed_attempt': j.failed_attempt}}));
+            const faceCount = typeof j.failed_attempt !== 'undefined' ? j.failed_attempt : 0;
+            const faceRemaining = typeof j.remainingattempts !== 'undefined' ? j.remainingattempts : null;
+            const fallbackState = {
+                count: faceCount,
+                locked: !!j.locked,
+                remaining: faceRemaining,
+                remainingattempts: faceRemaining,
+                source: 'face',
+                faceviolations: {
+                    count: faceCount,
+                    locked: !!j.locked,
+                    remaining: faceRemaining,
+                },
+                audioviolations: {
+                    count: j.state && j.state.audioviolations ? j.state.audioviolations.count : 0,
+                    locked: j.state && j.state.audioviolations ? !!j.state.audioviolations.locked : false,
+                    remaining: j.state && j.state.audioviolations
+                        ? j.state.audioviolations.remaining
+                        : faceRemaining,
+                },
+            };
+            const state = j.state ? j.state : fallbackState;
+            if (j.match > 0) {
+                document.dispatchEvent(new CustomEvent('snapshotCheckSuccess', {
+                    detail: {
+                        state: state,
+                    }
+                }));
+            } else {
+                document.dispatchEvent(new CustomEvent('snapshotCheckFailed', {
+                    detail: {
+                        remote_error: j.remote_error,
+                        httpcode: j.httpcode,
+                        failed_attempt: j.failed_attempt,
+                        locked: !!j.locked,
+                        remainingattempts: j.remainingattempts,
+                        state: state,
+                    }
+                }));
             }
         }).fail(function() {
            //console.log("============ FAIL checkpicture()");

@@ -25,6 +25,7 @@
 use mod_quiz\form\preflight_check_form;
 use mod_quiz\local\access_rule_base;
 use mod_quiz\quiz_settings;
+use quizaccess_videocapture\local\violation_tracker;
 
 
 /**
@@ -78,6 +79,9 @@ class quizaccess_videocapture extends access_rule_base {
             MoodleQuickForm $mform, $attemptid) {
         global $PAGE, $USER, $DB;
 
+        $pluginconfig = get_config('quizaccess_videocapture');
+        $audiomonitorenabled = !empty($pluginconfig->enableaudiomonitor);
+
         $context = \context_user::instance($USER->id);
         $noimage = false;
 
@@ -123,7 +127,7 @@ class quizaccess_videocapture extends access_rule_base {
         }
 
         $output = $PAGE->get_renderer('quizaccess_videocapture');
-        $html = $output->preflight_form_html($context->id, $noimage);
+        $html = $output->preflight_form_html($context->id, $noimage, $audiomonitorenabled);
 
         if ($noimage) {
             $userpicture = new user_picture($USER);
@@ -137,9 +141,18 @@ class quizaccess_videocapture extends access_rule_base {
         }
 
         $mform->addElement('html', $html);
-	$mform->addElement('hidden', 'facematched', '0');
-	$mform->setType('facematched',PARAM_BOOL);
+        $mform->addElement('hidden', 'facematched', '0');
+        $mform->setType('facematched', PARAM_BOOL);
         $mform->disabledif('submitbutton', 'facematched', 'eq', 0);
+
+        if ($audiomonitorenabled) {
+            $mform->addElement('hidden', 'audiocheck', '0');
+            $mform->setType('audiocheck', PARAM_BOOL);
+            $mform->disabledif('submitbutton', 'audiocheck', 'eq', 0);
+        } else {
+            $mform->addElement('hidden', 'audiocheck', '1');
+            $mform->setType('audiocheck', PARAM_BOOL);
+        }
 
         $html = html_writer::end_tag('div');
         $mform->addElement('html', $html);
@@ -231,25 +244,37 @@ class quizaccess_videocapture extends access_rule_base {
 
         $config = get_config('quizaccess_videocapture');
 
-        if (!$config->checkduringquiz || strpos($page->url, 'attempt.php') === false) {
+        $checkinterval = isset($config->checkinterval) ? (int)$config->checkinterval : 5;
+        $maxfailedchecks = isset($config->maxfailedchecks) ? (int)$config->maxfailedchecks : 3;
+
+        $facechecks = !empty($config->checkduringquiz ?? null);
+        $audiomonitor = !empty($config->enableaudiomonitor ?? null);
+
+        if ((!$facechecks && !$audiomonitor) || strpos($page->url, 'attempt.php') === false) {
             return;
         }
         $bc = new block_contents();
         $bc->attributes['id'] = 'mod_quiz_navblock';
         $bc->attributes['role'] = 'navigation';
-        $bc->title = get_string('facevideocaptureenabled', 'quizaccess_videocapture');
+        if ($facechecks) {
+            $bc->title = get_string('facevideocaptureenabled', 'quizaccess_videocapture');
+        } else {
+            $bc->title = get_string('enableaudiomonitor', 'quizaccess_videocapture');
+        }
 
         $output = $page->get_renderer('quizaccess_videocapture');
-        $bc->content = $output->videocapture_fake_block();
+        $bc->content = $output->videocapture_fake_block($facechecks, $audiomonitor);
 
         $regions = $page->blocks->get_regions();
         $page->blocks->add_fake_block($bc, reset($regions));
         if (!is_siteadmin()) {
             $moodleurl = new moodle_url('/').'';
             $context = \context_user::instance($USER->id);
+            $violationstate = violation_tracker::get_state($maxfailedchecks);
             $page->requires->js_call_amd('quizaccess_videocapture/face_recognition_block', 'init',
-                                          [$context->id, $COURSE->id, $config->checkinterval * 1000,
-                                          $config->maxfailedchecks, $moodleurl]);
+                                          [$context->id, $COURSE->id, $checkinterval * 1000,
+                                          $maxfailedchecks, $moodleurl, $facechecks, $audiomonitor,
+                                          $violationstate]);
         }
     }
 }

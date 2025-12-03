@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thirdpartylibs>
+    <library>
+        <name>libfvad WebAssembly build</name>
+        <description>WebRTC Voice Activity Detector (libfvad) compiled to WebAssembly.</description>
+        <licence>BSD-3-Clause</licence>
+        <version>0.2.0</version>
+        <copyright>2015-2023, The WebRTC project authors</copyright>
+        <homepage>https://github.com/echogarden-project/fvad-wasm</homepage>
+        <path>amd/build/fvad.mjs</path>
+        <licensefile>amd/build/fvad.LICENSE</licensefile>
+    </library>
+</thirdpartylibs>

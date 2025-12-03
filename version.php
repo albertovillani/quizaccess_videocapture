@@ -26,6 +26,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 
-$plugin->version   = 2025091200;
+$plugin->version   = 2025091202;
 $plugin->requires  = 2024100700;
 $plugin->component = 'quizaccess_videocapture';

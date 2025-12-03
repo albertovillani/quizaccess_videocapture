@@ -27,16 +27,70 @@ import ModalCancel from 'core/modal_cancel';
 import RC from 'quizaccess_videocapture/face_recognition_client';
 import Templates from 'core/templates';
 import {getString} from 'core/str';
+import AudioMonitor from 'quizaccess_videocapture/audio_monitor';
+
+const submitsel = 'input[name="submitbutton"]';
+const facesel = 'input[name="facematched"]';
+const audiosel = 'input[name="audiocheck"]';
+
+const isAudioAllowed = () => {
+    const $audio = $(audiosel);
+    if (!$audio.length) {
+        return true;
+    }
+    return $audio.val() === '1';
+};
+
+const syncSubmitButton = () => {
+    const $submit = $(submitsel);
+    if (!$submit.length) {
+        return;
+    }
+    const faceMatched = $(facesel).val() === '1';
+    if (faceMatched && isAudioAllowed()) {
+        $submit.removeAttr('disabled');
+    } else {
+        $submit.attr('disabled', 'disabled');
+    }
+};
+
+const setFacematched = (matched) => {
+    const $face = $(facesel);
+    if (!$face.length) {
+        return;
+    }
+    const target = matched ? '1' : '0';
+    if ($face.val() !== target) {
+        $face.val(target);
+    }
+    $face.trigger('change');
+    syncSubmitButton();
+};
 
 export const init = () => {
+
+    AudioMonitor.init({
+        containerSelector: '#audio-monitor',
+        hiddenInputSelector: 'input[name="audiocheck"]',
+        submitButtonSelector: 'input[name="submitbutton"]',
+        facematchedSelector: 'input[name="facematched"]'
+    });
+    $(audiosel).on('change.vcSubmitGuard', () => {
+        syncSubmitButton();
+    });
+    $(facesel).on('change.vcSubmitGuard', () => {
+        syncSubmitButton();
+    });
+    syncSubmitButton();
 
     $('input[name="cancel"]').on('click', () => {
         $('#recogfailed').hide();
         $('#recogsuccess').hide();
         $('#recogloader').hide();
         $('.videocappreflight').hide();
-        $('input[name="submitbutton"]').attr('disabled', 'disabled');
+        setFacematched(false);
         RC.releaseStream();
+        AudioMonitor.stop();
     });
 
     $('button[name="startvideocap"]').on('click', function(){
@@ -47,6 +101,10 @@ export const init = () => {
         $('#recogsuccess').hide();
         $('#recogloader').hide();
         $('.videocappreflight').show();
+        setFacematched(false);
+        AudioMonitor.start().catch(() => {
+            // UI will surface the detailed error state via the monitor panel.
+        });
         if(RC.stream === null){
             RC.startVideoCap('video', 'canvas', 'photo');
         }else{
@@ -61,8 +119,7 @@ export const init = () => {
     });
 
     document.addEventListener('snapshotCheckFailed', (e) =>{
-        $('input[name="facematched"]').attr('value', '0');
-        $('input[name="submitbutton"]').attr('disabled', 'disabled');
+        setFacematched(false);
         $('#recogsuccess').hide();
         $('#recogloader').hide();
         $('#recogfailed').show();
@@ -74,8 +131,7 @@ export const init = () => {
     });
 
     document.addEventListener('snapshotCheckSuccess', () =>{
-        $('input[name="facematched"]').attr('value', '1');
-        $('input[name="submitbutton"]').removeAttr('disabled');
+        setFacematched(true);
         $('#recogfailed').hide();
         $('#recogloader').hide();
         $('#recogsuccess').show();

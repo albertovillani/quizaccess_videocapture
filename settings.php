@@ -43,6 +43,11 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configcheckbox('quizaccess_videocapture/checkduringquiz',
         get_string('checkduringquiz', 'quizaccess_videocapture'), get_string('checkduringquiz', 'quizaccess_videocapture'), ''));
 
+    $audiomonitorsetting = new admin_setting_configcheckbox('quizaccess_videocapture/enableaudiomonitor',
+        get_string('enableaudiomonitor', 'quizaccess_videocapture'),
+        get_string('enableaudiomonitor_desc', 'quizaccess_videocapture'), 1);
+    $settings->add($audiomonitorsetting);
+
     $intervals = [];
     $intervals[5] = 5;
     $intervals[10] = 10;

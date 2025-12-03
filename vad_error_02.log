@@ -1,0 +1,966 @@
+first.js:241 Starting Moodle session keep-alive.
+first.js:1310 Debug module "M.reactive" loaded.
+first.js:1310 Registering new reactive instance "M.reactive.ProcessMonitor"
+first.js:1310 Registering new reactive instance "M.reactive.CourseEditor2"
+jquery-3.7.1.min.js:2 [Violation] Added non-passive event listener to a scroll-blocking 'mousewheel' event. Consider marking event handler as 'passive' to make the page more responsive. See https://www.chromestatus.com/feature/5745543795965952
+add @ jquery-3.7.1.min.js:2
+(anonymous) @ jquery-3.7.1.min.js:2
+each @ jquery-3.7.1.min.js:2
+each @ jquery-3.7.1.min.js:2
+Le @ jquery-3.7.1.min.js:2
+on @ jquery-3.7.1.min.js:2
+addScrollLockListener @ first.js:760
+(anonymous) @ first.js:760
+each @ jquery-3.7.1.min.js:2
+define @ first.js:760
+NotificationPopoverController.registerEventListeners @ first.js:3943
+(anonymous) @ attempt.php?attempt=58&cmid=2:762
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:759
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+first.js:5382 Page is missing a drawer region
+first.js:5382 Page is missing a drawer toggle link
+attempt.php?attempt=58&cmid=2:1  Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js.
+attempt.php?attempt=58&cmid=2:1  Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js.
+attempt.php?attempt=58&cmid=2:1  Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js.
+attempt.php?attempt=58&cmid=2:1  Tracking Prevention blocked access to storage for https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js.
+first.js:5488  [Deprecation] The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+[Violation] 'setTimeout' handler took 55ms
+first.js:5488  VAD module missing factory exports via https://moodle-dev-a.abacotechnology.it/lib/requirejs.php/1762786972/quizaccess_videocapture/fvad.mjs
+(anonymous) @ first.js:5488
+Promise.then
+importWithFallback @ first.js:5488
+loadVadRuntime @ first.js:5488
+AudioVAD._initVad @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+fvad.mjs?v=1762786972:9  wasm streaming compile failed: TypeError: Failed to execute 'compile' on 'WebAssembly': Incorrect response MIME type. Expected 'application/wasm'.
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateAsync @ fvad.mjs?v=1762786972:9
+createWasm @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+initialise @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+loadVadRuntime @ first.js:5488
+AudioVAD._initVad @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+fvad.mjs?v=1762786972:9  falling back to ArrayBuffer instantiation
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateAsync @ fvad.mjs?v=1762786972:9
+createWasm @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+initialise @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+loadVadRuntime @ first.js:5488
+AudioVAD._initVad @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+fvad.mjs?v=1762786972:9  failed to asynchronously prepare wasm: CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 64 65 66 69 @+0
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateArrayBuffer @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateAsync @ fvad.mjs?v=1762786972:9
+createWasm @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+initialise @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+loadVadRuntime @ first.js:5488
+AudioVAD._initVad @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+fvad.mjs?v=1762786972:9  Aborted(CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 64 65 66 69 @+0)
+abort @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateArrayBuffer @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateAsync @ fvad.mjs?v=1762786972:9
+createWasm @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+initialise @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+loadVadRuntime @ first.js:5488
+AudioVAD._initVad @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+first.js:5533  VAD engine error RuntimeError: Aborted(CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 64 65 66 69 @+0). Build with -sASSERTIONS for more info.
+    at abort (fvad.mjs?v=1762786972:9:4948)
+    at fvad.mjs?v=1762786972:9:6009
+handleVadEngineError @ first.js:5533
+dispatchEvent @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.catch
+AudioVAD._initVad @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736
+fvad.mjs?v=1762786972:9  Uncaught (in promise) RuntimeError: Aborted(CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 64 65 66 69 @+0). Build with -sASSERTIONS for more info.
+    at abort (fvad.mjs?v=1762786972:9:4948)
+    at fvad.mjs?v=1762786972:9:6009
+abort @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateArrayBuffer @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+(anonymous) @ fvad.mjs?v=1762786972:9
+Promise.then
+instantiateAsync @ fvad.mjs?v=1762786972:9
+createWasm @ fvad.mjs?v=1762786972:9
+(anonymous) @ fvad.mjs?v=1762786972:9
+initialise @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+loadVadRuntime @ first.js:5488
+AudioVAD._initVad @ first.js:5488
+(anonymous) @ first.js:5488
+Promise.then
+AudioVAD.init @ first.js:5488
+start @ first.js:5533
+_exports.init @ first.js:5516
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:740
+execCb @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+emit @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+a @ require.min.js:5
+completeLoad @ require.min.js:5
+onScriptLoad @ require.min.js:5
+script
+req.createNode @ require.min.js:5
+req.load @ require.min.js:5
+load @ require.min.js:5
+load @ require.min.js:5
+fetch @ require.min.js:5
+check @ require.min.js:5
+enable @ require.min.js:5
+enable @ require.min.js:5
+(anonymous) @ require.min.js:5
+(anonymous) @ require.min.js:5
+each @ require.min.js:5
+enable @ require.min.js:5
+init @ require.min.js:5
+(anonymous) @ require.min.js:5
+setTimeout
+req.nextTick @ require.min.js:5
+s @ require.min.js:5
+requirejs @ require.min.js:5
+(anonymous) @ attempt.php?attempt=58&cmid=2:736

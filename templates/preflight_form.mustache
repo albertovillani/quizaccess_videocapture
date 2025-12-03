@@ -27,6 +27,22 @@
     }
 }}
 <div class="videocappreflight" style="display:none">
+    {{#audiomonitor_enabled}}
+    <div id="audio-monitor"
+         class="audio-monitor status-idle"
+         role="status"
+         aria-live="polite"
+         data-prompt="{{#str}} audiomonitorprompt, quizaccess_videocapture {{/str}}"
+         data-ready="{{#str}} audiomonitorready, quizaccess_videocapture {{/str}}"
+         data-fallback="{{#str}} audiomonitorfallback, quizaccess_videocapture {{/str}}"
+         data-error="{{#str}} audiomonitorerror, quizaccess_videocapture {{/str}}"
+         data-speaking="{{#str}} audiomonitoractivity, quizaccess_videocapture {{/str}}"
+         data-silence="{{#str}} audiomonitorsilence, quizaccess_videocapture {{/str}}">
+        <span class="audio-monitor__label">{{#str}} audiomonitorheading, quizaccess_videocapture {{/str}}</span>
+        <span class="audio-monitor__icon" aria-hidden="true"></span>
+        <span class="audio-monitor__text">{{#str}} audiomonitorprompt, quizaccess_videocapture {{/str}}</span>
+    </div>
+    {{/audiomonitor_enabled}}
     <video id="video"></video>
     <div id="recogfailed" style="display:none" class="accessonly">
     

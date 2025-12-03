@@ -23,12 +23,49 @@
  */
 
 define(['jquery', 'core/templates', 'core/ajax', 'core/notification',
-'core/fragment', 'quizaccess_videocapture/face_recognition_client'],
- function($, Templates, ajax, Notification, Fragment, RC) {
+'core/fragment', 'quizaccess_videocapture/face_recognition_client', 'quizaccess_videocapture/audio_monitor'],
+ function($, Templates, ajax, Notification, Fragment, RC, AudioMonitor) {
 
     //var uid = null;
     //var usercontextid = null;
 
+    const submitsel = 'input[name="submitbutton"]';
+    const facesel = 'input[name="facematched"]';
+    const audiosel = 'input[name="audiocheck"]';
+
+    const isAudioAllowed = () => {
+        const $audio = $(audiosel);
+        if (!$audio.length) {
+            return true;
+        }
+        return $audio.val() === '1';
+    };
+
+    const syncSubmitButton = () => {
+        const $submit = $(submitsel);
+        if (!$submit.length) {
+            return;
+        }
+        const faceMatched = $(facesel).val() === '1';
+        if (faceMatched && isAudioAllowed()) {
+            $submit.removeAttr('disabled');
+        } else {
+            $submit.attr('disabled', 'disabled');
+        }
+    };
+
+    const setFacematched = (matched) => {
+        const $face = $(facesel);
+        if (!$face.length) {
+            return;
+        }
+        const target = matched ? '1' : '0';
+        if ($face.val() !== target) {
+            $face.val(target);
+        }
+        $face.trigger('change');
+        syncSubmitButton();
+    };
 
     var loadForm = function(userid, usercontextid){
         $('#formcontainer form').remove();
@@ -53,7 +90,7 @@ define(['jquery', 'core/templates', 'core/ajax', 'core/notification',
                 $('#saveandlogin').hide();
                 $('.errmsg').hide();
 
-                $('input[name="submitbutton"]').attr('disabled', 'disabled');
+                setFacematched(false);
                 $('#fgroup_id_buttonar').show();
                 $('#capturedpicture').show();
                 $('.icon_container').show();
@@ -72,6 +109,12 @@ define(['jquery', 'core/templates', 'core/ajax', 'core/notification',
             RC.setFlow('upload');
             RC.setUid(userid);
             RC.setPhotoTarget('photo_target');
+            $(audiosel).on('change.vcSubmitGuard', syncSubmitButton);
+            $(facesel).on('change.vcSubmitGuard', syncSubmitButton);
+            syncSubmitButton();
+            AudioMonitor.start().catch(() => {
+                // Monitor UI surfaces detailed errors.
+            });
 
             loadForm(userid, usercontextid);
             $('#fgroup_id_buttonar').hide();
@@ -101,6 +144,10 @@ define(['jquery', 'core/templates', 'core/ajax', 'core/notification',
                 $('#videocheck').show();
                 $('#recogfailed').hide();
                 $('#recogsuccess').hide();
+                AudioMonitor.start().catch(() => {
+                    // Already handled visually.
+                });
+                setFacematched(false);
                 RC.startVideoCap('video', 'canvas', 'photo');
             });
 
@@ -109,8 +156,9 @@ define(['jquery', 'core/templates', 'core/ajax', 'core/notification',
                 $('.preflighttitle').show();
                 $('#fitem_id_startvideocap').show();
                 $('.videocappreflight').hide();
-                $('input[name="submitbutton"]').attr('disabled', 'disabled');
+                setFacematched(false);
                 RC.releaseStream();
+                AudioMonitor.stop();
             });
 
             document.addEventListener('uploadedPictureCheckSuccess', () =>{
@@ -139,8 +187,7 @@ define(['jquery', 'core/templates', 'core/ajax', 'core/notification',
                 $('.actionbtn').attr('disabled', true);
                 $('.pic_label').hide();
                 $('button[name="takepicture"]').hide();
-                $('input[name="facematched"]').attr('value', '1');
-                $('input[name="submitbutton"]').removeAttr('disabled');
+                setFacematched(true);
                 $('#recogloader').hide();
                 $('#recogsuccess').show();
 
